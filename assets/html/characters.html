@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rick and Morty Characters</title>
+    <style>
+        body {
+            background-color: #CCFF1A;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #9900B3;
+            text-align: center;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background-color: #1e6091;
+            color: #ffffff;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Rick and Morty Characters</h1>
+    <ul id="characters-list">
+        <!-- Characters will be inserted here -->
+    </ul>
+</div>
+
+<script>
+    // This code should ideally be in a separate .js file
+    fetch('https://rickandmortyapi.com/api/character') // replace with the correct URL to fetch characters
+        .then(response => response.json())
+        .then(data => {
+            const charactersList = document.getElementById('characters-list');
+            data.results.forEach(character => {
+                const li = document.createElement('li');
+                li.textContent = character.name;
+                charactersList.appendChild(li);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+</script>
+
+</body>
+</html>
